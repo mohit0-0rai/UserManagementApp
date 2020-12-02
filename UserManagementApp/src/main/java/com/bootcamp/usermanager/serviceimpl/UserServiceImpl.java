@@ -122,12 +122,6 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> verifyResetLink(Response response, String link) {
 		String token = null;
 		try {
-			if (null == link || link.isEmpty()) {
-				logger.info("Empty link");
-				response.setCode(Constant.FAILURE_CODE);
-				response.setMessage("Invalid link.");
-				return null;
-			}
 			String[] splitLink = link.split("/");
 			token = splitLink[splitLink.length - 1];
 			logger.info("Token received: " + token);
