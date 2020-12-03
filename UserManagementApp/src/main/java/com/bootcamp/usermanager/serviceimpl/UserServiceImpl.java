@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			if (null == userDto.getEmail() || userDto.getEmail().isEmpty()) {
 				response.setCode(Constant.FAILURE_CODE);
-				response.setMessage("Invalid Email.");
+				response.setMessage("Invalid request");
 				return response;
 			}
 			Optional<User> userOpt = userRepository.findByEmail(userDto.getEmail());
@@ -136,12 +136,12 @@ public class UserServiceImpl implements UserService {
 			if (user.getTokenExpirationDate().before(new Date())) {
 				logger.info("Expired token");
 				response.setCode(Constant.FAILURE_CODE);
-				response.setMessage("Token expired.");
+				response.setMessage("Reset token expired.");
 				return null;
 			}
 			logger.info("Token successfully validated");
 			response.setCode(Constant.SUCCESS_CODE);
-			response.setMessage("Token validated.");
+			response.setMessage("Reset token validated.");
 
 			return userOpt;
 
@@ -159,12 +159,6 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			Integer id = JwtUtil.getUserId(httpRequest.getHeader("Authorisation"));
-			if (null == id) {
-				logger.info("JWT can't be validated");
-				response.setCode(Constant.FAILURE_CODE);
-				response.setMessage("Invalid JWT");
-				return response;
-			}
 
 			if (null == updatePasswordDto.get("oldPassword") || null == updatePasswordDto.get("password")
 					|| null == updatePasswordDto.get("confirmPassword") || !updatePasswordDto.get("password").toString()
@@ -194,12 +188,6 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return response;
-	}
-
-	@Override
-	public Response addContact(String userId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

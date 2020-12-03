@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.bootcamp.usermanager.util.Constant;
 import com.bootcamp.usermanager.util.JwtUtil;
 
 @Component
@@ -46,7 +47,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 		} else {
 			logger.info("Unauthorised access, invalid token: " + token);
 			JSONObject responseJson = new JSONObject();
-			responseJson.put("code", 401);
+			responseJson.put("code", Constant.UNAUTHORIZED_CODE);
 			responseJson.put("message", "Unauthorised access");
 			httpResponse.setStatus(HttpServletResponse.SC_OK);
 			httpResponse.getWriter().write(responseJson.toString());

@@ -33,7 +33,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 	@Override
 	public Response login(UserDto userDto) {
 		Response response = new Response();
-		// logger.info("User request: " + userDto);
 		try {
 			boolean validationStatus = RequestValidationUtil.validateLogin(userDto, response);
 			if (!validationStatus)
@@ -49,7 +48,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 				response.setData(data);
 				userRepository.updateLastLogin(userOpt.get().getId());
 			} else {
-				response.setCode(Constant.FAILURE_CODE);
+				response.setCode(Constant.FORBIDDEN_CODE);
 				response.setMessage("Invalid login credentials");
 			}
 
@@ -58,9 +57,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 			response.setCode(Constant.SERVER_ERROR_CODE);
 			response.setMessage(Constant.SERVER_ERROR_MESSAGE);
 		}
-//		} finally {
-//			logger.info("Response to user: " + response);
-//		}
 		return response;
 	}
 

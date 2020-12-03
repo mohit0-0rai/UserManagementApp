@@ -19,6 +19,4 @@ public interface UserService {
 
 	Response updatePassword(Map<String, Object> updatePasswordDto);
 
-	Response addContact(String userId);
-
 }
