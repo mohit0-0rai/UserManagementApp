@@ -63,7 +63,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 	@Override
 	public Response register(UserDto userDto) {
 		Response response = new Response();
-		// logger.info("User Request: " + userDto);
 		try {
 			boolean validationStatus = RequestValidationUtil.validateRegister(userDto, response);
 			if (!validationStatus) {
@@ -73,7 +72,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 			if (null != userDto.getEmail() && !userDto.getEmail().isEmpty()) {
 				Optional<User> userOpt = userRepository.findByEmail(userDto.getEmail());
 				if (userOpt.isPresent()) {
-					response.setCode(Constant.FAILURE_CODE);
+					response.setCode(Constant.SERVER_ERROR_CODE);
 					response.setMessage("Email already exists.");
 					return response;
 				}
@@ -82,7 +81,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 			if (null != userDto.getPhoneNumber() && !userDto.getPhoneNumber().isEmpty()) {
 				Optional<User> userOpt = userRepository.findByPhoneNumber(userDto.getPhoneNumber());
 				if (userOpt.isPresent()) {
-					response.setCode(Constant.FAILURE_CODE);
+					response.setCode(Constant.SERVER_ERROR_CODE);
 					response.setMessage("Phone number already exists.");
 					return response;
 				}

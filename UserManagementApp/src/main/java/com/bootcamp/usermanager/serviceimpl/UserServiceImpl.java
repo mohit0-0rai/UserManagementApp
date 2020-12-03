@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 			String token = generateResetToken(), to = userDto.getEmail(), subject = "UserManager: Reset your password";
 			emailService.sendEmail(token, to, subject);
 
-			userRepository.updateResetToken(token);
+			userRepository.updateResetToken(token, userOpt.get().getId());
 			response.setCode(Constant.SUCCESS_CODE);
 			response.setMessage("Reset link sent successfully.");
 			return response;

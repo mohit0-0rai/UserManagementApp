@@ -27,8 +27,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	
 	@Transactional
 	@Modifying
-	@Query("update User u set u.resetToken = ?1, u.tokenExpirationDate = CURRENT_TIMESTAMP")
-	void updateResetToken(String token);
+	@Query("update User u set u.resetToken = ?1, u.tokenExpirationDate = CURRENT_TIMESTAMP where u.id = ?2")
+	void updateResetToken(String token, Integer id);
 
 	@Transactional
 	@Modifying

@@ -6,6 +6,7 @@ public interface Constant {
 	String FORBIDDEN_CODE = "403";
 	String SERVER_ERROR_CODE = "500";
 	String UNAUTHORIZED_CODE = "401";
+	String CREATED_CODE = "201";
 	String APP_SECRET_KEY = "ifVSetMV3LpjwHOocTIGLmQGNm2UWbgY";
 	Integer JWT_TOKEN_EXPIRATION = 60000 * 60 * 5;
 	Integer PASSWORD_RESET_TOKEN_EXPIRATION = 60000 * 60 * 10;
