@@ -1,4 +1,4 @@
-package com.quovantis.usermanagement;
+package com.bootcamp.usermanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

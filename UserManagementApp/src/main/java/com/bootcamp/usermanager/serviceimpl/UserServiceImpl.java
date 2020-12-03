@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
 
 			userRepository.updatePassword(userOpt.get().getId(),
 					passwordEncoder.encode((String) resetPasswordDto.get("password")));
-			logger.info("Password resetted successfully");
+			logger.info("Password reset successfully");
 			response.setCode(Constant.SUCCESS_CODE);
 			response.setMessage("Password reset successfully.");
 
@@ -194,6 +194,12 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return response;
+	}
+
+	@Override
+	public Response addContact(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
